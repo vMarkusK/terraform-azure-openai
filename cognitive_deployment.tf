@@ -9,6 +9,6 @@ resource "azurerm_cognitive_deployment" "o4" {
   }
 
   sku {
-    name = "Standard"
+    name = "GlobalStandard"
   }
 }
