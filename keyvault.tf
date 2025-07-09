@@ -1,5 +1,7 @@
 resource "time_static" "current" {}
 
+data "azuread_client_config" "this" {}
+
 data "http" "icanhazip" {
   url = "http://ipv4.icanhazip.com"
 }

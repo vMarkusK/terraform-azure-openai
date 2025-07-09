@@ -1,14 +1,29 @@
-resource "azurerm_cognitive_deployment" "gpt4o" {
-  name                 = "gpt4o-mini"
-  cognitive_account_id = azurerm_cognitive_account.this.id
+resource "azurerm_cognitive_account" "this" {
+  name                = local.oai_name
+  location            = azurerm_resource_group.this.location
+  resource_group_name = azurerm_resource_group.this.name
+  kind                = "OpenAI"
+  sku_name            = "S0"
 
-  model {
-    format  = "OpenAI"
-    name    = "gpt-4o-mini"
-    version = "2024-07-18" # Beispiel: das Veröffentlichungsdatum des Modells
+  local_auth_enabled                 = false
+  outbound_network_access_restricted = true
+  public_network_access_enabled      = true
+  custom_subdomain_name              = random_string.suffix.result
+
+  network_acls {
+    default_action = "Deny"
+    bypass         = "AzureServices"
+    ip_rules       = ["${chomp(data.http.icanhazip.response_body)}/32"]
   }
 
-  sku {
-    name = "Standard"
+  identity {
+    type = "UserAssigned"
+    identity_ids = [
+      azurerm_user_assigned_identity.this.id
+    ]
+  }
+
+  customer_managed_key {
+    key_vault_key_id = azurerm_key_vault_key.this.versionless_id
   }
 }
