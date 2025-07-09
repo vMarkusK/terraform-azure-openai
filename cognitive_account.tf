@@ -26,4 +26,6 @@ resource "azurerm_cognitive_account" "this" {
   customer_managed_key {
     key_vault_key_id = azurerm_key_vault_key.this.versionless_id
   }
+
+  depends_on = [azurerm_key_vault.this, azurerm_role_assignment.uai]
 }
