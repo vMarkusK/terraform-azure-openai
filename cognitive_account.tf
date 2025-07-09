@@ -23,8 +23,9 @@ resource "azurerm_cognitive_account" "this" {
   }
 
   customer_managed_key {
-    key_vault_key_id = azurerm_key_vault_key.this.id
+    key_vault_key_id   = azurerm_key_vault_key.this.id
+    identity_client_id = azurerm_user_assigned_identity.this.client_id
   }
 
-  depends_on = [azurerm_key_vault.this, azurerm_role_assignment.uai]
+  depends_on = [azurerm_key_vault.this, azurerm_role_assignment.crypo_user, azurerm_role_assignment.crypo_service]
 }
