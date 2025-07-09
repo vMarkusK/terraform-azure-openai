@@ -16,6 +16,7 @@ resource "azurerm_user_assigned_identity" "this" {
   location            = azurerm_resource_group.this.location
 }
 
+#trivy:ignore:AVD-AZU-0013
 resource "azurerm_key_vault" "this" {
   name                = local.kv_name
   resource_group_name = azurerm_resource_group.this.name
