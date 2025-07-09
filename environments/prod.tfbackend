@@ -1,0 +1,5 @@
+resource_group_name  = "rg-state-openai-ewr4hp"
+storage_account_name = "ststateopenaiewr4hp"
+container_name       = "tfstate"
+key                  = "prod.tfstate"
+use_azuread_auth     = true
