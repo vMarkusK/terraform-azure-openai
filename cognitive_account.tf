@@ -18,7 +18,7 @@ resource "azurerm_cognitive_account" "this" {
   identity {
     type = "UserAssigned"
     identity_ids = [
-      azurerm_user_assigned_identity.this.id
+      azurerm_user_assigned_identity.uai.id
     ]
   }
 
