@@ -4,6 +4,18 @@ terraform {
       source  = "hashicorp/azurerm"
       version = "~> 4.31.0"
     }
+    random = {
+      source  = "hashicorp/random"
+      version = ">= 3.7"
+    }
+    time = {
+      source  = "hashicorp/time"
+      version = ">= 0.13"
+    }
+    http = {
+      source  = "hashicorp/http"
+      version = ">= 3.5"
+    }
   }
   backend "azurerm" {}
   required_version = "~> 1.12.0"
