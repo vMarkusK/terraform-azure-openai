@@ -30,9 +30,16 @@ resource "azurerm_key_vault" "this" {
 
 }
 
-resource "azurerm_role_assignment" "uai" {
+resource "azurerm_role_assignment" "crypo_user" {
   scope                = azurerm_key_vault.this.id
   role_definition_name = "Key Vault Crypto User"
+  principal_id         = azurerm_user_assigned_identity.this.principal_id
+  principal_type       = "ServicePrincipal"
+}
+
+resource "azurerm_role_assignment" "crypo_service" {
+  scope                = azurerm_key_vault.this.id
+  role_definition_name = "Key Vault Crypto Service Encryption User"
   principal_id         = azurerm_user_assigned_identity.this.principal_id
   principal_type       = "ServicePrincipal"
 }
