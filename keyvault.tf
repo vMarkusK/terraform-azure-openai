@@ -2,10 +2,6 @@ resource "time_static" "current" {}
 
 data "azuread_client_config" "this" {}
 
-data "http" "icanhazip" {
-  url = "http://ipv4.icanhazip.com"
-}
-
 resource "random_string" "suffix" {
   length  = 6
   special = false
@@ -30,12 +26,6 @@ resource "azurerm_key_vault" "this" {
   enable_rbac_authorization  = true
   purge_protection_enabled   = true
   soft_delete_retention_days = 7
-
-  network_acls {
-    default_action = "Deny"
-    bypass         = "AzureServices"
-    ip_rules       = ["${chomp(data.http.icanhazip.response_body)}/32"]
-  }
 
 }
 
