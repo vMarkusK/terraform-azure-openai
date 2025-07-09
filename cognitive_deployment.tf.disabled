@@ -4,8 +4,8 @@ resource "azurerm_cognitive_deployment" "gpt4o" {
 
   model {
     format  = "OpenAI"
-    name    = "gpt-4o-mini"
-    version = "2024-07-18" # Beispiel: das Veröffentlichungsdatum des Modells
+    name    = "o4-mini"
+    version = "2025-04-16"
   }
 
   sku {
