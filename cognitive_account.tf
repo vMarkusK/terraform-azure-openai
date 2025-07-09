@@ -13,7 +13,6 @@ resource "azurerm_cognitive_account" "this" {
   network_acls {
     default_action = "Deny"
     bypass         = "AzureServices"
-    ip_rules       = ["${chomp(data.http.icanhazip.response_body)}/32"]
   }
 
   identity {
