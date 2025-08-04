@@ -7,7 +7,7 @@ resource "azurerm_cognitive_account" "this" {
 
   local_auth_enabled                 = false
   outbound_network_access_restricted = false
-  public_network_access_enabled      = true
+  public_network_access_enabled      = false
   custom_subdomain_name              = random_string.suffix.result
 
   network_acls {
