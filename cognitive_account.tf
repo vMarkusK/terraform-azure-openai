@@ -6,8 +6,8 @@ resource "azurerm_cognitive_account" "this" {
   sku_name            = "S0"
 
   local_auth_enabled                 = false
-  outbound_network_access_restricted = false
-  public_network_access_enabled      = false
+  outbound_network_access_restricted = true
+  public_network_access_enabled      = true
   custom_subdomain_name              = random_string.suffix.result
 
   network_acls {
