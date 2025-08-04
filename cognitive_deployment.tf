@@ -1,4 +1,4 @@
-resource "azurerm_cognitive_deployment" "o4" {
+resource "azurerm_cognitive_deployment" "o4_mini" {
   name                 = "o4-mini"
   cognitive_account_id = azurerm_cognitive_account.this.id
 
